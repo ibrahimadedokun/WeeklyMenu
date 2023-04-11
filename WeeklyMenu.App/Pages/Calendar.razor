@@ -1,0 +1,144 @@
+﻿@page "/"
+
+<div class="row">
+    <div class="col">
+        <label for="showSnack">Show Snack: </label>
+        <input id="showSnack" type="checkbox" @onchange="() => _showSnack = !_showSnack" />
+    </div>
+    <div class="col float-end">
+        <span class="oi oi-trash" @onclick="ClearAll">Clear All</span>
+    </div>
+</div>
+<div>
+    <table class="table table-hover table-bordered table-striped text-center">
+        <thead>
+            <tr>
+                <th>@nameof(Menu.Day)</th>
+                <th>@nameof(Menu.Breakfast)</th>
+                <th>@nameof(Menu.Lunch)</th>
+                <th>@nameof(Menu.Dinner)</th>
+                @if (_showSnack)
+                {
+                    <th>@nameof(Menu.Snack)</th>
+                }
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var menu in MenuList)
+            {
+                <tr>
+                    <td>@menu.Day</td>
+
+                    <td @onclick="() => menu.EditBreakfast = true">
+                        @if (menu.EditBreakfast)
+                        {
+                            <input type="text" @bind-value="@menu.Breakfast" @onmouseout="(args) => Update(menu)" />
+                        }
+                        else
+                        {
+                            @menu.Breakfast
+                        }
+                    </td>
+
+                    <td @onclick="() => menu.EditLunch = true">
+                        @if (menu.EditLunch)
+                        {
+                            <input type="text" @bind-value="@menu.Lunch" @onmouseout="(args) => Update(menu)" />
+                        }
+                        else
+                        {
+                            @menu.Lunch
+                        }
+                    </td>
+
+                    <td @onclick="() => menu.EditDinner = true">
+                        @if (menu.EditDinner)
+                        {
+                            <input type="text" @bind-value="@menu.Dinner" @onmouseout="(args) => Update(menu)" />
+                        }
+                        else
+                        {
+                            @menu.Dinner
+                        }
+                    </td>
+
+                    @if (_showSnack)
+                    {
+                        <td @onclick="() => menu.EditSnack = true">
+                            @if (menu.EditSnack)
+                            {
+                                <input type="text" @bind-value="@menu.Snack" @onmouseout="(args) => Update(menu)" />
+                            }
+                            else
+                            {
+                                @menu.Snack
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    bool _showSnack = false;
+
+    string _filePath = Path.Combine(FileSystem.Current.AppDataDirectory, Constant.FileName);
+
+    List<Menu> MenuList { get; set; } = new List<Menu>
+    {
+        new Menu{ Day = "Mon" },
+        new Menu{ Day = "Tue" },
+        new Menu{ Day = "Wed" },
+        new Menu{ Day = "Thu" },
+        new Menu{ Day = "Fri" },
+        new Menu{ Day = "Sat" },
+        new Menu{ Day = "Sun" }
+    };
+
+    void Load()
+    {
+        try
+        {
+            var rawData = File.ReadAllText(_filePath);
+            MenuList = JsonSerializer.Deserialize<List<Menu>>(rawData);
+            MenuList.ForEach(menu => CancelEdit(menu));
+        }
+        catch
+        {
+
+        }
+    }
+
+    void ClearAll()
+    {
+        MenuList.ForEach(menu =>
+        {
+            menu.Breakfast = string.Empty;
+            menu.Lunch = string.Empty;
+            menu.Dinner = string.Empty;
+            menu.Snack = string.Empty;
+        });
+    }
+
+    void Update(Menu menu){
+        CancelEdit(menu);
+        File.WriteAllText(_filePath, JsonSerializer.Serialize(MenuList));
+        StateHasChanged();
+    }
+
+    void CancelEdit(Menu menu){
+        menu.EditBreakfast = false;
+        menu.EditLunch = false;
+        menu.EditDinner = false;
+        menu.EditSnack = false;
+    }
+
+    protected override void OnInitialized()
+    {
+        Load();
+        base.OnInitialized();
+    }
+}
