@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace WeeklyMenu.App
+namespace WeeklyMenu.App.Platforms.iOS
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

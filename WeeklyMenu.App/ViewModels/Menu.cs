@@ -1,4 +1,4 @@
-﻿namespace WeeklyMenu.Common.Models
+﻿namespace WeeklyMenu.App.ViewModels
 {
     public class Menu
     {

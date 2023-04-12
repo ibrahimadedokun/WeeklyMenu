@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace WeeklyMenu.App
+namespace WeeklyMenu.App.Platforms.Android
 {
     [Application]
     public class MainApplication : MauiApplication

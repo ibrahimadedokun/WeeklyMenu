@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeeklyMenu.Common", "WeeklyMenu.Common\WeeklyMenu.Common.csproj", "{89448F2D-1D28-472C-81CB-4F159A16E3F2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeeklyMenu.App", "WeeklyMenu.App\WeeklyMenu.App.csproj", "{4A843CAC-9125-44FC-964C-DA267BD15FE9}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{89448F2D-1D28-472C-81CB-4F159A16E3F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89448F2D-1D28-472C-81CB-4F159A16E3F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89448F2D-1D28-472C-81CB-4F159A16E3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89448F2D-1D28-472C-81CB-4F159A16E3F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A843CAC-9125-44FC-964C-DA267BD15FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A843CAC-9125-44FC-964C-DA267BD15FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A843CAC-9125-44FC-964C-DA267BD15FE9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

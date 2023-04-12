@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace WeeklyMenu.App
+namespace WeeklyMenu.App.Platforms.iOS
 {
     public class Program
     {

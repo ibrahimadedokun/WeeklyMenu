@@ -1,4 +1,4 @@
-﻿namespace WeeklyMenu.Common
+﻿namespace WeeklyMenu.App
 {
     public static class Constant
     {
